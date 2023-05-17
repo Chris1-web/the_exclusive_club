@@ -1,0 +1,29 @@
+{
+  "name": "the_exclusive_club",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "serverstart": "nodemon app.js",
+    "tailwindstart": "npx tailwindcss -i ./public/input.css -o ./public/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chris1-web/the_exclusive_club.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chris1-web/the_exclusive_club/issues"
+  },
+  "homepage": "https://github.com/Chris1-web/the_exclusive_club#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "tailwindcss": "^3.3.2"
+  }
+}
