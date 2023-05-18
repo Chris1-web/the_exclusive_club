@@ -1,15 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const accountController = require("../controllers/accountController");
+const messageController = require("../controllers/messageController");
 
-router.get("/", (req, res) => {
-  res.render("layout", {
-    title: "The Exclusive Club",
-    p: "Layout Page would be extended by other pug pages",
-  });
-});
-
-router.get("/sign-up", (req, res) => {
-  res.send("Sign Up Page GET PAGE to be implemented");
-});
+router.get("/", messageController.messages_list);
+router.get("/sign-up", accountController.account_create_get);
 
 module.exports = router;

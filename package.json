@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "serverstart": "nodemon app.js",
+    "devstart": "nodemon app.js",
     "tailwindstart": "npx tailwindcss -i ./public/input.css -o ./public/output.css --watch"
   },
   "repository": {

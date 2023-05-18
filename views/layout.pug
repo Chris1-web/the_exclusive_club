@@ -4,4 +4,13 @@ html
         link(rel="stylesheet" href="/output.css")
         title= title
     body 
-        p(class="text-3xl font-bold underline text-center") #{p}
+        nav(class="text-center mt-4") 
+            div(class="top-nav flex items-center justify-center pb-2")
+                img(src="/images/logo.png" class="w-12 h-auto")
+                p(class="text-3xl line-through") THE EXCLUSIVE CLUB
+            div(class="middle-nav flex justify-center gap-2 underline text-base pb-2") 
+                a(href="/sign-up") Sign Up
+                a(href="/login") Login
+            div(class="bottom-nav text-base text-light-black")
+                p To post a message, Please create an account and become a member 
+        block content
