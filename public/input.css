@@ -5,11 +5,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap");
 
-body {
+body,
+.form-title {
   font-family: "Italiana", serif;
 }
 
 .middle-nav,
-.bottom-nav {
+.bottom-nav,
+.sign-up-form {
   font-family: "Inter", sans-serif;
 }
