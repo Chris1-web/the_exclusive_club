@@ -37,7 +37,7 @@ exports.account_create_post = [
     // if there are errors
     if (!errors.isEmpty()) {
       // display form again with error
-      console.log(errors.array()[0]);
+      res.render("signup_form", { title: "Sign Up", errors: errors.array() });
       return;
     }
     // create user with bcrypt password in the database
