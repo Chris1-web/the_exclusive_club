@@ -8,9 +8,7 @@ router.get("/", messageController.messages_list);
 router.get("/sign-up", accountController.account_create_get);
 router.post("/sign-up", accountController.account_create_post);
 router.get("/login", accountController.login_get);
-router.post(
-  "/login",
-  passport.authenticate("local", { successRedirect: "/", failureRedirect: "/" })
-);
+router.post("/login", accountController.login_post);
+router.get("/logout", accountController.logout_get);
 
 module.exports = router;

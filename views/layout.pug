@@ -5,12 +5,25 @@ html
         title= title
     body 
         nav(class="text-center mt-4") 
-            div(class="top-nav flex items-center justify-center pb-2")
-                img(src="/images/logo.png" class="w-12 h-auto")
-                p(class="text-3xl line-through") THE EXCLUSIVE CLUB
-            div(class="middle-nav flex justify-center gap-2 underline text-base pb-2") 
-                a(href="/sign-up") Sign Up
-                a(href="/login") Login
+            div(class="top-nav flex items-center justify-center pb-4")
+                img(src="/images/logo.png" class="w-10 h-auto")
+                a(href="/")
+                    p(class="text-3xl line-through") THE EXCLUSIVE CLUB
+            div(class="middle-nav flex justify-center items-center gap-2 underline text-base pb-2") 
+                if !user
+                    a(href="/sign-up") Sign Up
+                    a(href="/login") Login
+                else 
+                    ul(class="flex gap-2") 
+                        li(class="no-underlinee") HELLO, #{user.username}
+                        li 
+                            a(href="/") New Message 
+                        li 
+                            a(href="/") Be a Member 
+                        li 
+                            a(href="/") Be an Admin
+                        li 
+                            a(href="/logout") logout
             div(class="bottom-nav text-base text-light-black")
                 p To post a message, Please create an account and become a member 
         block content
