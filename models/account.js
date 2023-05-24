@@ -9,3 +9,5 @@ const AccountSchema = new Schema({
   member: { type: Boolean, default: false, required: true },
   admin: { type: Boolean, default: false, required: true },
 });
+
+module.exports = mongoose.model("Account", AccountSchema);

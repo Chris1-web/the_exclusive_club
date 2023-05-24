@@ -1,4 +1,7 @@
+const Account = require("../models/account");
 const { body, validationResult } = require("express-validator");
+const passport = require("passport");
+const bcrypt = require("bcryptjs");
 
 // Sign Up Page
 exports.account_create_get = (req, res) => {
@@ -32,17 +35,40 @@ exports.account_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  (req, res) => {
-    const errors = validationResult(req);
-    // if there are errors
-    if (!errors.isEmpty()) {
-      // display form again with error
-      res.render("signup_form", { title: "Sign Up", errors: errors.array() });
-      return;
+  async (req, res, next) => {
+    const { first_name, last_name, username, password } = req.body;
+    try {
+      const errors = validationResult(req);
+      // if there are errors
+      if (!errors.isEmpty()) {
+        // display form again with error
+        res.render("signup_form", { title: "Sign Up", errors: errors.array() });
+        return;
+      }
+      // create user with bcrypt password in the database
+      bcrypt.hash(password, 10, async (err, hashedPassword) => {
+        const account = new Account({
+          firstName: first_name,
+          lastName: last_name,
+          username: username,
+          password: hashedPassword,
+          member: false,
+          admin: false,
+        });
+        await account.save();
+        res.redirect("/");
+      });
+    } catch (err) {
+      return next(err);
     }
-    // create user with bcrypt password in the database
-    res.send(
-      `All fields have been filled ${(req.body.first_name, req.body.password)}`
-    );
   },
 ];
+
+exports.login_get = (req, res) => {
+  res.render("login_form");
+};
+
+exports.login_post = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/",
+});

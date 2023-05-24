@@ -2,3 +2,5 @@ extends layout
 
 block content 
     p #{p}
+    if user
+        p welcome #{user.username}
