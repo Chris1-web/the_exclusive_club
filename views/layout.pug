@@ -9,21 +9,21 @@ html
                 img(src="/images/logo.png" class="w-10 h-auto")
                 a(href="/")
                     p(class="text-3xl line-through") THE EXCLUSIVE CLUB
-            div(class="middle-nav flex justify-center items-center gap-2 underline text-base pb-2") 
+            div(class="middle-nav flex justify-center items-center gap-2 text-base pb-2") 
                 if !user
-                    a(href="/sign-up") Sign Up
-                    a(href="/login") Login
+                    a(href="/sign-up" class="underline") Sign Up
+                    a(href="/login" class="underline") Login
                 else 
-                    ul(class="flex gap-2") 
-                        li(class="no-underlinee") HELLO, #{user.username}
+                    ul(class="flex gap-2 text-2xl") 
+                        li(class="text-blue-400") HELLO, #{user.username}
                         li 
-                            a(href="/") New Message 
+                            a(href="/" class="underline") New Message 
                         li 
-                            a(href="/") Be a Member 
+                            a(href="/membership" class="underline") Be a Member 
                         li 
-                            a(href="/") Be an Admin
+                            a(href="/" class="underline") Be an Admin
                         li 
-                            a(href="/logout") logout
+                            a(href="/logout" class="text-red-400") logout
             div(class="bottom-nav text-base text-light-black")
                 p To post a message, Please create an account and become a member 
         block content

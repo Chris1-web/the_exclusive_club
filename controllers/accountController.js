@@ -87,6 +87,15 @@ exports.login_post = [
   },
 ];
 
+exports.membership_get = (req, res) => {
+  res.render("membership_form", { user: req.user });
+};
+
+exports.membership_post = (req, res) => {
+  // attach res.locals.currentUser = req.user;
+  // get a random text too be inputed in form to become a member
+};
+
 exports.logout_get = (req, res) => {
   req.logout(function (err) {
     if (err) {
