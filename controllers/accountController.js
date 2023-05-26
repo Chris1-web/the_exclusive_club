@@ -2,7 +2,6 @@ const Account = require("../models/account");
 const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-const { v4: uuidv4 } = require("uuid");
 
 // Sign Up Page
 exports.account_create_get = (req, res) => {
@@ -90,13 +89,12 @@ exports.login_post = [
 
 exports.membership_get = (req, res) => {
   // generate random text from uuid dependency
-  const code = uuidv4();
-  res.render("membership_form", { title: "Be a member", user: req.user, code });
+  res.render("membership_form", { title: "Be a member", user: req.user });
 };
 
 exports.membership_post = (req, res) => {
   // attach res.locals.currentUser = req.user;
-  // get a random text too be inputed in form to become a member
+  console.log(req.body.secret_code);
 };
 
 exports.logout_get = (req, res) => {
