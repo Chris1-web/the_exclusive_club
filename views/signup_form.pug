@@ -4,23 +4,22 @@ block content
     form(method="post" class="sign-up-form bg-[#D9D9D9] flex flex-col gap-5 container mx-auto max-w-md px-7 py-5 mt-10 w-1/2 text-base")
         p(class="form-title text-center underline text-lg opacity-50") Create Account
         div(class="first-name-container flex flex-col")
-            label(for="first_name") First Name
+            label(for="first_name") First Name :
             input(type="text" id="first_name" name="first_name" class="border outline-none p-1" required)
         div(class="last-name-container flex flex-col")
-            label(for="last_name") Last Name
+            label(for="last_name") Last Name :
             input(type="text" id="last_name" name="last_name" class="border p-1 outline-none" required)
         div(class="username-container flex flex-col")
-            label(for="username") Username
+            label(for="username") Username :
             input(type="text" id="username" name="username" class="border p-1 outline-none" required)
         div(class="password-container flex flex-col")
-            label(for="password") Password
+            label(for="password") Password :
             input(type="password" id="password" name="password" class=(errors ? "border p-1 outline-none border-red-500": "border p-1 outline-none") required) 
         div(class="conform-password-container flex flex-col")
-            label(for="confirm_password") Confirm Password
+            label(for="confirm_password") Confirm Password :
             input(type="password" id="confirm_password" name="confirm_password" class=(errors ? "border p-1 outline-none border-red-500": "border p-1 outline-none") required)
             if errors
                 ul 
                 each error in errors 
                     li(class="text-red-500 pt-2") #{error.msg}
-        div(class="button-container")
-            button(class="px-2 py-1 bg-black text-white text-lg") Sign Up
+        button(class="px-2 py-1 bg-black text-white text-lg") Sign Up
