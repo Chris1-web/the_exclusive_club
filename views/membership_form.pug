@@ -1,12 +1,31 @@
 extends layout 
 
 block content 
-    form(class="membership-form bg-[#D9D9D9] flex flex-col gap-5 container mx-auto max-w-md px-7 py-5 mt-10 w-1/2 text-base" method="post" action="")
+    form(class="membership-form bg-[#D9D9D9] flex flex-col gap-5 container mx-auto max-w-md px-7 py-5 mt-10 w-1/2 text-base")
+        p(class="copied-to-clipboard-message text-center")
         p(class="form-title text-center underline text-lg opacity-50") Be A Member
+        div(class="secret-code-container") 
+            p Code
+            div(class="flex items-center justify-around cursor-pointer hover:bg-green-200 border border-gray-400 py-2 px-4") 
+                p(class="main-code") #{code} 
+                img(src="/images/copy-icon.png" class="h-auto w-4")
         div(class="flex flex-col gap-2")
             label(for="secret_code") Secret Code: 
             input(type="text" name="secret_code" id="secret_code" class="border outline-none p-1")
             button(class="px-2 py-1 bg-black text-white text-lg") Submit
-        p(class="text-center") Secret code can be found 
-            a(href="https://github.com/Chris1-web/the_exclusive_club" target="_blank" class="text-blue-400 underline") here
 
+
+    script.
+        const code_container = document.querySelector(".secret-code-container");
+        const generated_code = document.querySelector(".main-code");
+        const clipboardCopy = document.querySelector(".copied-to-clipboard-message");
+
+        const copyToClipboard = function(){
+            navigator.clipboard.writeText(generated_code.textContent);
+            clipboardCopy.textContent = "Copied to clipboard";
+            setTimeout(()=>{
+                clipboardCopy.textContent = "";
+            }, 1000)
+        }
+
+        code_container.addEventListener("click", copyToClipboard)
