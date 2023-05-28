@@ -8,6 +8,12 @@ const path = require("path");
 
 // Sign Up Page
 exports.account_create_get = (req, res) => {
+  // if user is signed in, redirect to home page
+  if (req.user) {
+    res.redirect("/");
+    return;
+  }
+  // else, display sign up page
   res.render("signup_form", { title: "Sign Up" });
 };
 
@@ -68,13 +74,19 @@ exports.account_create_post = [
 ];
 
 exports.login_get = (req, res) => {
+  // if user is signed in, redirect to home page
+  if (req.user) {
+    res.redirect("/");
+    return;
+  }
+  // else, display sign in page
   res.render("login_form");
 };
 
 exports.login_post = [
   body("username", "Username is required").trim().isLength({ min: 1 }).escape(),
   body("password", "Password is required").trim().isLength({ min: 1 }).escape(),
-  (req, res) => {
+  (req, res, options) => {
     const errors = validationResult(req);
     // if there are errors
     if (!errors.isEmpty()) {
@@ -85,12 +97,20 @@ exports.login_post = [
     // you cannot call passport.authenticate by yourself
     passport.authenticate("local", {
       successRedirect: "/",
-      failureRedirect: "/",
+      failureRedirect: "/login",
     })(req, res);
   },
 ];
 
 exports.membership_get = async (req, res) => {
+  // if user is already a member or is not logged in
+  if (!req.user) {
+    res.redirect("/login");
+    return;
+  } else if (req.user.member) {
+    res.redirect("/");
+    return;
+  }
   try {
     // generate random text from uuid dependency
     const code = uuidv4();

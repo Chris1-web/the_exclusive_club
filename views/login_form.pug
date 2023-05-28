@@ -5,10 +5,10 @@ block content
         p(class="form-title text-center underline text-lg opacity-50") Sign In
         div(class="username-container flex flex-col")
             label(for="username") Username :
-            input(class="border outline-none p-1" type="text" name="username" id="username" )
+            input(class="border outline-none p-1" type="text" name="username" id="username" required)
         div(class="password-container flex flex-col")
             label(for="password") Password :
-            input(class="border outline-none p-1" type="password" name="password" id="password")
+            input(class="border outline-none p-1" type="password" name="password" id="password" required)
             if errors
                 ul 
                 each error in errors 
