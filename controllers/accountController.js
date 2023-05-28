@@ -3,6 +3,8 @@ const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
+const fs = require("fs/promises");
+const path = require("path");
 
 // Sign Up Page
 exports.account_create_get = (req, res) => {
@@ -26,7 +28,7 @@ exports.account_create_post = [
     .escape()
     .custom((value, { req }) => {
       if (value !== req.body.confirm_password) {
-        // trow error if passwords do not match
+        // throw error if passwords do not match
         throw new Error("Passwords don't match");
       } else {
         return value;
@@ -88,16 +90,81 @@ exports.login_post = [
   },
 ];
 
-exports.membership_get = (req, res) => {
-  // generate random text from uuid dependency
-  const code = uuidv4();
-  res.render("membership_form", { title: "Be a member", user: req.user, code });
+exports.membership_get = async (req, res) => {
+  try {
+    // generate random text from uuid dependency
+    const code = uuidv4();
+    // membership code written in file successfully
+    fs.writeFile(path.join(__dirname, "../secret/membership_code.txt"), code);
+    res.render("membership_form", {
+      title: "Be a member",
+      user: req.user,
+      code,
+    });
+  } catch (err) {
+    // display with error that the code has expired
+    res.render("membership_form", {
+      title: "Be a member",
+      user: req.user,
+      errors: [{ msg: "The previously entered code has expired" }],
+    });
+  }
 };
 
-exports.membership_post = (req, res) => {
-  // attach res.locals.currentUser = req.user;
-  // get a random text too be inputed in form to become a member
-};
+exports.membership_post = [
+  body("secret_code", "Something went wrong")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Secret code cannot be empty")
+    .escape()
+    .custom(async (value, { req }) => {
+      const current_code_data = await fs.readFile(
+        path.join(__dirname, "../secret/membership_code.txt"),
+        {
+          encoding: "utf8",
+        }
+      );
+      if (value !== current_code_data) {
+        // throw error if code has changed
+        throw new Error("The previously entered code has expired");
+      } else {
+        return value;
+      }
+    }),
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      // if there are errors
+      if (!errors.isEmpty()) {
+        // display form again with error
+        // generate new code from uuid dependency
+        const code = uuidv4();
+        // membership code written in file successfully
+        fs.writeFile(
+          path.join(__dirname, "../secret/membership_code.txt"),
+          code
+        );
+        res.render("membership_form", {
+          title: "Be a member",
+          user: req.user,
+          code,
+          errors: errors.array(),
+        });
+        return;
+      }
+
+      const user = await Account.findOneAndUpdate(
+        { _id: req.user },
+        { member: true }
+      );
+      user.save();
+      res.redirect("/");
+    } catch (err) {
+      console.log(err);
+      // return next(err);
+    }
+  },
+];
 
 exports.logout_get = (req, res) => {
   req.logout(function (err) {
