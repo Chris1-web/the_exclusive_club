@@ -1,6 +1,6 @@
 extends layout 
+include mixins/message_card
 
 block content 
-    p #{p}
-    if user
-        p welcome #{user.username}
+    for message in messages 
+        +message_card(message)

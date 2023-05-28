@@ -2,12 +2,13 @@ const { body, validationResult } = require("express-validator");
 const Message = require("../models/message");
 
 // display all messages
-exports.messages_list = (req, res) => {
-  res.render("home", {
-    title: "Messages",
-    p: "List of messages NOT IMPLEMENTED",
-    user: req.user,
-  });
+exports.messages_list = async (req, res, next) => {
+  try {
+    const messages = await Message.find({}).populate("author");
+    res.render("home", { title: "Messages", user: req.user, messages });
+  } catch (err) {
+    next(err);
+  }
 };
 
 exports.new_message_get = (req, res) => {
