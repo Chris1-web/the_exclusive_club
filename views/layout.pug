@@ -17,7 +17,7 @@ html
                     ul(class="flex gap-2 text-2xl list-none") 
                         li(class="text-blue-400") HELLO, #{user.username}
                         li 
-                            a(href="/" class="underline") New Message 
+                            a(href="/new-message" class="underline") New Message 
                         if !user.member 
                             li 
                                 a(href="/membership" class="underline") Be a Member 

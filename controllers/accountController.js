@@ -86,7 +86,7 @@ exports.login_get = (req, res) => {
 exports.login_post = [
   body("username", "Username is required").trim().isLength({ min: 1 }).escape(),
   body("password", "Password is required").trim().isLength({ min: 1 }).escape(),
-  (req, res, options) => {
+  (req, res) => {
     const errors = validationResult(req);
     // if there are errors
     if (!errors.isEmpty()) {
