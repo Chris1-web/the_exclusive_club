@@ -4,15 +4,14 @@ html
         link(rel="stylesheet" href="/output.css")
         title= title
     body 
-        nav(class="text-center mt-4") 
+        nav(class="text-center mt-4 flex justify-between container mx-auto") 
             div(class="top-nav flex items-center justify-center pb-4")
-                img(src="/images/logo.png" class="w-10 h-auto")
                 a(href="/")
-                    p(class="text-3xl line-through") THE EXCLUSIVE CLUB
-            div(class="middle-nav flex justify-center items-center gap-2 text-2xl pb-2") 
+                    p(class="text-3xl") Exclusive.
+            div(class="middle-nav flex justify-center items-center gap-2 text-base pb-2") 
                 if !user
-                    a(href="/sign-up" class="underline") Sign Up
-                    a(href="/login" class="underline") Login
+                    a(href="/login" class="px-2 py-3") Log in
+                    a(href="/sign-up" class="bg-black text-white px-3 py-2 rounded-xl") Sign Up
                 else 
                     ul(class="flex gap-2 text-2xl list-none") 
                         li(class="text-blue-400") HELLO, #{user.username}
@@ -26,7 +25,8 @@ html
                                 a(href="/" class="underline") Be an Admin
                         li 
                             a(href="/logout" class="text-red-400") logout
+        div(class="bg-[#BFC2CD] h-screen py-3")
             if !user
                 div(class="bottom-nav text-base text-light-black")
-                    p To post a message, Please create an account and become a member 
-        block content
+                    p(class="text-center pt-2") To post a message, Please create an account and become a member 
+            block content

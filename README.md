@@ -7,6 +7,7 @@ A simple member's only club created with Node, Express, PassportJS and MongoDB
 1. [Introduction](#Introduction)
 2. [Technologies](#Technologies)
 3. [Setup](#Setup)
+4. [Reference](#Reference)
 
 ## Introduction
 
@@ -36,10 +37,28 @@ $ npm run devstart
 $ npm run tailwindstart
 ```
 
-https://stackoverflow.com/questions/53254274/passport-authenticate-is-stuck-and-does-not-return-any-value
-Copy icon by Icons8
-https://www.freecodecamp.org/news/git-reverting-to-previous-commit-how-to-revert-to-last-commit/
-https://medium.com/@pprachit09/pagination-using-mongoose-express-and-pug-7033cb487ce7
+## Features
+
+<!-- add images to this section, lobatan -->
+
+### To do:
+
+- Sign Up
+- Log in
+- Become a Member to see authors and date
+- Create a New Message
+- Become Admin
+
+#### References
+
+1. Authenticate user with login
+   https://stackoverflow.com/questions/53254274/passport-authenticate-is-stuck-and-does-not-return-any-value
+
+2. How to revert to a previous commit in Git
+   https://www.freecodecamp.org/newsgit-reverting-to-previous-commit-how-to-revert-to-last-commit/
+
+3. How to add pagination
+   https://medium.com/@pprachit09/pagination-using-mongoose-express-and-pug-7033cb487ce7
 
 <!-- implement admin user -->
 <!-- make req.locals -->

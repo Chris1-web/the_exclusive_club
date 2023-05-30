@@ -1,16 +1,22 @@
 extends layout 
 
 block content 
-    form(method="post", action="" class="sign-in-form bg-[#D9D9D9] flex flex-col gap-5 container mx-auto max-w-md px-7 py-5 mt-10 w-1/2 text-base")
-        p(class="form-title text-center underline text-lg opacity-50") Sign In
-        div(class="username-container flex flex-col")
-            label(for="username") Username :
-            input(class="border outline-none p-1" type="text" name="username" id="username" required)
-        div(class="password-container flex flex-col")
-            label(for="password") Password :
-            input(class="border outline-none p-1" type="password" name="password" id="password" required)
-            if errors
-                ul 
-                each error in errors 
-                    li(class="text-red-500 pt-2") #{error.msg}
-        button(class="px-2 py-1 bg-black text-white text-lg") Log In
+    div(class="form-design flex h-[70vh] items-center container mx-auto max-w-4xl justify-between gap-5 px-5 py-5 my-10 bg-white border rounded-xl")
+        div(class="design bg-yellow-200 flex flex-col justify-between h-[98%] w-[40%] px-5 py-4 border rounded-lg border-none")
+            p(class="uppercase") Exclusive
+            h3(class="text-4xl") Continue your <br> journey with us.
+            p(class="text-base") To post a message, Please create an account and become a member 
+        form(method="post", action="" class="sign-in-form flex flex-col gap-5 px-5 w-3/5 text-base h-[60%]")
+            p(class="form-title font-bold text-3xl") Hey, hello
+            p(class="text-[#BFC2CD] text-sm") Enter the information you entered while registering.
+            div(class="username-container flex flex-col")
+                label(for="username" class="text-gray-500") Username 
+                input(class="border outline-none py-1 px-2 rounded-lg" type="text" name="username" id="username" required)
+            div(class="password-container flex flex-col")
+                label(for="password" class="text-gray-500") Password 
+                input(class="border outline-none py-1 px-2 rounded-lg" type="password" name="password" id="password" required)
+                if errors
+                    ul 
+                    each error in errors 
+                        li(class="text-red-500 pt-2") #{error.msg}
+            button(class="px-2 py-1 bg-yellow-200 text-black text-base border rounded-xl border-none") Log In

@@ -7,7 +7,7 @@ mixin message_card(message)
         div(class="horizontal-line w-100 border border-grey my-3")
         div(class="more-info-container flex list-none justify-between")
             if user === undefined || user.member === false
-                li XXX
+                li posted by: XXX
                 li XXX
             else 
                 li posted by: #{message.author.username} 

@@ -1,16 +1,16 @@
 extends layout 
 
 block content 
-    form(method="post" class="sign-up-form bg-[#D9D9D9] flex flex-col gap-5 container mx-auto max-w-md px-7 py-5 mt-10 w-1/2 text-base")
-        p(class="form-title text-center underline text-lg opacity-50") Create Message
+    form(method="post" class="sign-up-form bg-white flex flex-col justify-between gap-3 container mx-auto max-w-md px-5 py-10 mt-10 w-1/2 text-base border rounded-xl h-[70%]")
+        p(class="form-title font-bold text-2xl") Create Message
         div(class="first-name-container flex flex-col")
-            label(for="title") Title :
-            input(type="text" id="title" name="title" class="border outline-none p-1")
+            label(for="title" class="text-gray-500") Title 
+            input(type="text" id="title" name="title" class="border outline-none py-1 px-2 rounded-lg" required)
         div(class="text-container flex flex-col")
-            label(for="text") Text :
-            textarea(name="text", cols="30", rows="10" id="text") 
+            label(for="text" class="text-gray-500") Text 
+            textarea(name="text", cols="30", rows="10" id="text" class="border outline-none py-1 px-2 rounded-lg" required) 
             if errors
                 ul 
                 each error in errors 
                     li(class="text-red-500 pt-1") #{error.msg}
-        button(class="px-2 py-1 bg-black text-white text-lg") Post
+        button(class="px-2 py-2 bg-yellow-200 text-black text-base border rounded-xl border-none") Create Message
