@@ -20,7 +20,7 @@ html
                         if !user.member 
                             li 
                                 a(href="/membership" class="underline") Be a Member 
-                        else
+                        if !user.admin
                             li 
                                 a(href="/admin" class="underline") Be an Admin
                         li 

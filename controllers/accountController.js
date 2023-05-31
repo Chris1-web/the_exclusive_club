@@ -143,7 +143,7 @@ exports.membership_get = async (req, res) => {
 };
 
 exports.membership_post = [
-  body("secret_code", "Something went wrong")
+  body("secret_code", "You need to enter the generated code")
     .trim()
     .isLength({ min: 1 })
     .withMessage("Secret code cannot be empty")
@@ -185,7 +185,7 @@ exports.membership_post = [
       }
 
       const user = await Account.findOneAndUpdate(
-        { _id: req.user },
+        { _id: req.user._id },
         { member: true }
       );
       user.save();
@@ -236,3 +236,53 @@ exports.admin_get = async (req, res) => {
     });
   }
 };
+
+exports.admin_post = [
+  body("admin_code", "You need to enter the generated code")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Secret code cannot be empty")
+    .escape()
+    .custom(async (value, { req }) => {
+      const current_code_data = await fs.readFile(
+        path.join(__dirname, "../secret/admin_code.txt"),
+        {
+          encoding: "utf8",
+        }
+      );
+      if (value !== current_code_data) {
+        // throw error if code has changed
+        throw new Error("The previously entered code has expired");
+      } else {
+        return value;
+      }
+    }),
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      // if there are errors
+      if (!errors.isEmpty()) {
+        // display form again with error
+        // generate new code from uuid dependency
+        const code = uuidv4();
+        // admin code written in file successfully
+        fs.writeFile(path.join(__dirname, "../secret/secret_code.txt"), code);
+        res.render("admin_form", {
+          title: "Be an Admin",
+          user: req.user,
+          code,
+          errors: errors.array(),
+        });
+        return;
+      }
+      const user = await Account.findOneAndUpdate({
+        _id: req.user._id,
+        admin: true,
+      });
+      user.save();
+      res.redirect("/");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+];

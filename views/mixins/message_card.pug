@@ -10,5 +10,7 @@ mixin message_card(message)
                 li posted by: XXX
                 li XXX
             else 
-                li posted by: #{message.author.username} 
+                li posted by: #{message.author.username}
+                    if message.author.admin 
+                        p(class="text-red-400") admin
                 li #{message.message_date}
