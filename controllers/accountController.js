@@ -205,3 +205,34 @@ exports.logout_get = (req, res) => {
     res.redirect("/");
   });
 };
+
+exports.admin_get = async (req, res) => {
+  // if user is a member, admin or not signed in, take appropriate steps
+  if (!req.user) {
+    res.redirect("/");
+    return;
+  } else if (!req.user.member) {
+    res.redirect("/membership");
+    return;
+  } else if (req.user.admin) {
+    res.redirect("/");
+    return;
+  }
+  try {
+    // generate random code from uuid dependency
+    const code = uuidv4();
+    // write admin code in file successfully
+    fs.writeFile(path.join(__dirname, "../secret/admin_code.txt"), code);
+    res.render("admin_form", {
+      title: "Become An Admin",
+      user: req.user,
+      code,
+    });
+  } catch (err) {
+    res.render("admin_form", {
+      title: "Be An Admin",
+      user: req.user,
+      errors: [{ msg: "The previously entered code has expired" }],
+    });
+  }
+};

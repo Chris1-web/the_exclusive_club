@@ -1,0 +1,36 @@
+extends layout
+
+block content 
+    form(class="admin-form bg-white flex flex-col justify-between gap-3 container mx-auto max-w-md px-5 py-10 mt-20 w-1/2 text-base border rounded-xl" method="post" action="")
+        p(class="copied-to-clipboard-message text-center")
+        p(class="form-title text-center underline text-lg opacity-50") Be An Admin
+        div(class="secret-code-container") 
+            p Code
+            div(class="flex items-center justify-around cursor-pointer hover:bg-lime-500 border border-gray-400 py-2 px-4 rounded-lg") 
+                p(class="admin-main-code") #{code} 
+                img(src="/images/copy-icon.png" class="h-auto w-4")
+        div(class="flex flex-col gap-2")
+            label(for="admin_code") Secret Code 
+            input(type="text" name="admin_code" id="admin_code" class="border outline-none py-1 px-2 rounded-lg" required)
+            if errors
+                ul 
+                each error in errors 
+                    li(class="text-red-500 pt-2") #{error.msg}
+            button(class="px-2 py-2 bg-lime-500 text-black text-base border rounded-xl border-none") Submit
+
+
+
+    script.
+        const code_container = document.querySelector(".secret-code-container");
+        const generated_code = document.querySelector(".admin-main-code");
+        const clipboardCopy = document.querySelector(".copied-to-clipboard-message");
+
+        const copyToClipboard = function(){
+            navigator.clipboard.writeText(generated_code.textContent);
+            clipboardCopy.textContent = "Copied to clipboard";
+            setTimeout(()=>{
+                clipboardCopy.textContent = "";
+            }, 1000)
+        }
+
+        code_container.addEventListener("click", copyToClipboard)
