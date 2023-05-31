@@ -4,7 +4,7 @@ html
         link(rel="stylesheet" href="/output.css")
         title= title
     body 
-        nav(class="text-center mt-4 flex justify-between container mx-auto") 
+        nav(class="text-center mt-4 flex justify-between container mx-auto shadow-2xl") 
             div(class="top-nav flex items-center justify-center pb-4")
                 a(href="/")
                     p(class="text-3xl") Exclusive.
@@ -14,7 +14,7 @@ html
                     a(href="/sign-up" class="bg-black text-white px-3 py-2 rounded-xl") Sign Up
                 else 
                     ul(class="flex gap-2 text-2xl list-none") 
-                        li(class="text-blue-400") HELLO, #{user.username}
+                        li(class="text-lime-500") HELLO, #{user.username}
                         li 
                             a(href="/new-message" class="underline") New Message 
                         if !user.member 

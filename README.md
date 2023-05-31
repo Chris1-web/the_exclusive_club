@@ -7,7 +7,7 @@ A simple member's only club created with Node, Express, PassportJS and MongoDB
 1. [Introduction](#Introduction)
 2. [Technologies](#Technologies)
 3. [Setup](#Setup)
-4. [Reference](#Reference)
+4. [Reference](#References)
 
 ## Introduction
 

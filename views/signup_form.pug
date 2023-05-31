@@ -2,7 +2,7 @@ extends layout
 
 block content 
     div(class="form-design flex h-[70vh] items-center container mx-auto max-w-4xl justify-between gap-5 px-5 py-5 my-10 bg-white border rounded-xl")
-        div(class="design bg-yellow-200 flex flex-col justify-between h-[98%] w-[40%] px-5 py-4 border rounded-lg border-none")
+        div(class="design bg-lime-500 flex flex-col justify-between h-[98%] w-[40%] px-5 py-4 border rounded-lg border-none")
             p(class="uppercase") Exclusive
             h3(class="text-4xl") Start your <br> journey with us.
             p(class="text-base") To post a message, Please create an account and become a member 
@@ -27,4 +27,4 @@ block content
                     ul 
                     each error in errors 
                         li(class="text-red-500 pt-2") #{error.msg}
-            button(class="px-2 py-1 bg-yellow-200 text-black text-base border rounded-xl border-none") Create Account
+            button(class="px-2 py-1 bg-lime-500 text-black text-base border rounded-xl border-none") Create Account

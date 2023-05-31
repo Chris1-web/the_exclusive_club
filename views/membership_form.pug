@@ -6,7 +6,7 @@ block content
         p(class="form-title text-center underline text-lg opacity-50") Be A Member
         div(class="secret-code-container") 
             p Code
-            div(class="flex items-center justify-around cursor-pointer hover:bg-yellow-200 border border-gray-400 py-2 px-4 rounded-lg") 
+            div(class="flex items-center justify-around cursor-pointer hover:bg-lime-500 border border-gray-400 py-2 px-4 rounded-lg") 
                 p(class="main-code") #{code} 
                 img(src="/images/copy-icon.png" class="h-auto w-4")
         div(class="flex flex-col gap-2")
@@ -16,7 +16,7 @@ block content
                 ul 
                 each error in errors 
                     li(class="text-red-500 pt-2") #{error.msg}
-            button(class="px-2 py-2 bg-yellow-200 text-black text-base border rounded-xl border-none") Submit
+            button(class="px-2 py-2 bg-lime-500 text-black text-base border rounded-xl border-none") Submit
 
 
 
