@@ -2,10 +2,9 @@ extends layout
 include mixins/message_card
 
 block content   
-    - let n = 1;
+    - let count = 1;
     for message in messages 
         +message_card(message)
-    ul.pagination
-        while n < page_count + 1
-            li
-                a(href="?page="+n)=n++
+    ul(class="pagination flex justify-center gap-1 mt-3 cursor-pointer")
+        while count < page_count + 1
+            a(href="?page="+count class=`bg-white px-5 py-2 hover:bg-lime-500 ${current_page === count ? "border border-lime-500 bg-lime-300": ""}`)=count++

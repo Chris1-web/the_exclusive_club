@@ -20,6 +20,7 @@ exports.messages_list = async (req, res, next) => {
       user: req.user,
       messages: results.docs,
       page_count: results.totalPages,
+      current_page: results.page,
     });
   });
 };
