@@ -58,8 +58,8 @@ $ npm run tailwindstart
    https://www.freecodecamp.org/newsgit-reverting-to-previous-commit-how-to-revert-to-last-commit/
 
 3. How to add pagination
-   https://medium.com/@pprachit09/pagination-using-mongoose-express-and-pug-7033cb487ce7
-   https://www.npmjs.com/package/mongoose-paginate-v2
+   - https://medium.com/@pprachit09/pagination-using-mongoose-express-and-pug-7033cb487ce7
+   - https://www.npmjs.com/package/mongoose-paginate-v2
 
 <!-- implement admin user -->
 <!-- make req.locals -->
