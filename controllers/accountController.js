@@ -95,7 +95,7 @@ exports.login_get = (req, res) => {
     return;
   }
   // else, display sign in page
-  res.render("login_form");
+  res.render("login_form", { title: "Log In" });
 };
 
 exports.login_post = [
