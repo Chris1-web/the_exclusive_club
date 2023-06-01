@@ -1,3 +1,4 @@
+const mongoosePaginate = require("mongoose-paginate-v2");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -28,5 +29,7 @@ MessageSchema.virtual("message_date").get(function () {
     months[this.date.getMonth() + 1]
   } ${this.date.getDate()}, ${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}`;
 });
+
+MessageSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Message", MessageSchema);

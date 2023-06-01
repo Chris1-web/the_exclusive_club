@@ -1,6 +1,11 @@
 extends layout 
 include mixins/message_card
 
-block content 
+block content   
+    - let n = 1;
     for message in messages 
         +message_card(message)
+    ul.pagination
+        while n < page_count + 1
+            li
+                a(href="?page="+n)=n++

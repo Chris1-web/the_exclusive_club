@@ -13,18 +13,18 @@ html
                     a(href="/login" class="px-2 py-3") Log in
                     a(href="/sign-up" class="bg-black text-white px-3 py-2 rounded-xl") Sign Up
                 else 
-                    ul(class="flex gap-2 text-2xl list-none") 
+                    ul(class="flex gap-2 text-xl list-none") 
                         li(class="text-lime-500") HELLO, #{user.username}
                         li 
-                            a(href="/new-message" class="underline") New Message 
+                            a(href="/new-message" class="underline text-xl") New Message 
                         if !user.member 
                             li 
-                                a(href="/membership" class="underline") Be a Member 
+                                a(href="/membership" class="underline text-xl") Be a Member 
                         if !user.admin
                             li 
-                                a(href="/admin" class="underline") Be an Admin
+                                a(href="/admin" class="underline text-xl") Be an Admin
                         li 
-                            a(href="/logout" class="text-red-400") logout
+                            a(href="/logout" class="text-red-400 text-xl") logout
         div(class="bg-[#BFC2CD] h-screen py-3")
             if !user
                 div(class="bottom-nav text-base text-light-black")

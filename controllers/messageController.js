@@ -3,12 +3,25 @@ const Message = require("../models/message");
 
 // display all messages
 exports.messages_list = async (req, res, next) => {
-  try {
-    const messages = await Message.find({}).populate("author");
-    res.render("home", { title: "Messages", user: req.user, messages });
-  } catch (err) {
-    next(err);
-  }
+  const { page } = req.query;
+  const options = {
+    page: parseInt(page, 10) || 1,
+    limit: 2,
+    sort: { date: -1 },
+    populate: "author",
+  };
+  Message.paginate({}, options).then((results, err) => {
+    if (err) {
+      next(err);
+    }
+    //Pass the totalpages number to pug along with the result
+    res.render("home", {
+      title: "Messages",
+      user: req.user,
+      messages: results.docs,
+      page_count: results.totalPages,
+    });
+  });
 };
 
 exports.new_message_get = (req, res) => {

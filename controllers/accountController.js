@@ -76,7 +76,11 @@ exports.account_create_post = [
           admin: false,
         });
         await account.save();
-        res.redirect("/");
+        // automatically authenticate user
+        passport.authenticate("local", {
+          successRedirect: "/",
+          failureRedirect: "/login",
+        })(req, res);
       });
     } catch (err) {
       return next(err);
