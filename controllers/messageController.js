@@ -6,7 +6,7 @@ exports.messages_list = async (req, res, next) => {
   const { page } = req.query;
   const options = {
     page: parseInt(page, 10) || 1,
-    limit: 2,
+    limit: 3,
     sort: { date: -1 },
     populate: "author",
   };
@@ -23,7 +23,6 @@ exports.messages_list = async (req, res, next) => {
       current_page: results.page,
     });
   });
-  console.log(req.user);
 };
 
 exports.new_message_get = (req, res) => {
