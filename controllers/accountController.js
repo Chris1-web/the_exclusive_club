@@ -33,8 +33,12 @@ exports.account_create_post = [
     .escape()
     .custom(async (value) => {
       // check if another username already has this username
-      const existingUser = await Account.find({ username: value });
-      if (existingUser) throw new Error("This username is not available");
+      const existingUser = await Account.findOne({ username: value });
+      if (existingUser) {
+        throw new Error("This username is not available");
+      } else {
+        return value;
+      }
     }),
   body("password", "Password is required")
     .trim()
