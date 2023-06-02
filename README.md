@@ -60,8 +60,3 @@ $ npm run tailwindstart
 3. How to add pagination
    - https://medium.com/@pprachit09/pagination-using-mongoose-express-and-pug-7033cb487ce7
    - https://www.npmjs.com/package/mongoose-paginate-v2
-
-<!-- make req.locals -->
-<!-- make admin delete personal posts -->
-<!-- add footer -->
-<!-- add handburger menu -->
