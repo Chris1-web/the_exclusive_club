@@ -27,7 +27,15 @@ exports.account_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("username", "Username is required").trim().isLength({ min: 1 }).escape(),
+  body("username", "Username is required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .custom(async (value) => {
+      // check if another username already has this username
+      const existingUser = await Account.find({ username: value });
+      if (existingUser) throw new Error("This username is not available");
+    }),
   body("password", "Password is required")
     .trim()
     .isLength({ min: 1 })
@@ -54,17 +62,6 @@ exports.account_create_post = [
         res.render("signup_form", { title: "Sign Up", errors: errors.array() });
         return;
       }
-
-      // check if another user already has the username
-      const existingUser = await Account.findOne({ username: username });
-      if (existingUser) {
-        res.render("signup_form", {
-          title: "Sign Up",
-          errors: [{ msg: "This username is not available" }],
-        });
-        return;
-      }
-
       // create user with bcrypt password in the database
       bcrypt.hash(password, 10, async (err, hashedPassword) => {
         const account = new Account({
