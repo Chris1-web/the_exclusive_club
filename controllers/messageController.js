@@ -23,6 +23,7 @@ exports.messages_list = async (req, res, next) => {
       current_page: results.page,
     });
   });
+  console.log(req.user);
 };
 
 exports.new_message_get = (req, res) => {
@@ -58,3 +59,23 @@ exports.new_message_post = [
     }
   },
 ];
+
+exports.delete_message_get = async (req, res) => {
+  // if user is not signed in or is not an admin
+  if (!req.user || !req.user.admin) {
+    res.redirect("/");
+  }
+  try {
+    const { messageid } = req.params;
+    const message = await Message.find({ _id: messageid });
+    if (message) {
+      res.render("message_delete_form", {
+        title: "Delete Message",
+        messageid,
+      });
+      return;
+    }
+  } catch (err) {
+    res.redirect("/");
+  }
+};

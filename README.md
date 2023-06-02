@@ -47,7 +47,7 @@ $ npm run tailwindstart
 - Log in
 - Become a Member to see authors and date
 - Create a New Message
-- Become Admin
+- Become Admin to delete your posts
 
 #### References
 
@@ -61,6 +61,7 @@ $ npm run tailwindstart
    - https://medium.com/@pprachit09/pagination-using-mongoose-express-and-pug-7033cb487ce7
    - https://www.npmjs.com/package/mongoose-paginate-v2
 
-<!-- implement admin user -->
 <!-- make req.locals -->
-<!-- implement pagination -->
+<!-- make admin delete personal posts -->
+<!-- add footer -->
+<!-- add handburger menu -->

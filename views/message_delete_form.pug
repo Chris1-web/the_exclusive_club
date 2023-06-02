@@ -1,0 +1,8 @@
+extends layout 
+
+block content 
+    form(method="post" action="" class="text-center my-5")
+        h1(class="text-2xl") Delete Message
+        p Do you really want to delete this message?
+        input(value=messageid type="hidden")
+        button(class="bg-red-500 text-white px-3 py-2") Delete

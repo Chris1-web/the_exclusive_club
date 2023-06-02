@@ -30,6 +30,10 @@ MessageSchema.virtual("message_date").get(function () {
   } ${this.date.getDate()}, ${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}`;
 });
 
+MessageSchema.virtual("url").get(function () {
+  return `/message/${this._id}`;
+});
+
 MessageSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Message", MessageSchema);
