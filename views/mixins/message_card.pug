@@ -2,7 +2,7 @@ mixin message_card(message)
     div(class="message_card container bg-[#F3F3F3] border-2 rounded-lg px-4 py-2 mt-3 mx-auto w-[90%] border-lime-500 md:w-3/6")
         div(class="title-container flex justify-between items-center")
             h2(class="uppercase text-2xl pb-2 text-[#2C4507]") #{message.title}
-            if user !== undefined
+            if user !== undefined && user.admin
                 if message.author._id.toString() === user._id.toString()
                     a(class="delete-button bg-red-500 px-2 py-0.5 text-white" href=message.url + '/delete') Delete
         div(class="text-container")

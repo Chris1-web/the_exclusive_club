@@ -36,7 +36,7 @@ exports.new_message_get = (req, res) => {
 exports.new_message_post = [
   body("title", "Title is required").trim().isLength({ min: 1 }).escape(),
   body("text", "Text is required").trim().isLength({ min: 1 }).escape(),
-  async (req, res) => {
+  async (req, res, next) => {
     const { title, text } = req.body;
     try {
       const errors = validationResult(req);
@@ -54,27 +54,53 @@ exports.new_message_post = [
       await message.save();
       res.redirect("/");
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 ];
 
-exports.delete_message_get = async (req, res) => {
+exports.delete_message_get = async (req, res, next) => {
   // if user is not signed in or is not an admin
   if (!req.user || !req.user.admin) {
     res.redirect("/");
   }
   try {
     const { messageid } = req.params;
-    const message = await Message.find({ _id: messageid });
-    if (message) {
+    const message = await Message.find({
+      _id: messageid,
+      author: req.user._id,
+    });
+    if (message.length !== 0) {
       res.render("message_delete_form", {
         title: "Delete Message",
         messageid,
       });
       return;
+    } else {
+      res.redirect("/");
     }
   } catch (err) {
-    res.redirect("/");
+    next(err);
   }
+};
+
+exports.delete_message_post = [
+  body("message_id", "Invalid Page").trim().isLength({ min: 1 }).escape(),
+  async (req, res) => {
+    const { message_id } = req.body;
+    if (!req.user || !req.user.admin) {
+      res.redirect("/");
+    }
+    try {
+      // delete message
+      await Message.deleteOne({ _id: message_id });
+      res.redirect("/");
+    } catch (err) {
+      next(err);
+    }
+  },
+];
+
+exports.error_get = (req, res) => {
+  res.render("error", { title: "404 Error" });
 };

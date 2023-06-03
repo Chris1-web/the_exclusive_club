@@ -196,8 +196,7 @@ exports.membership_post = [
       user.save();
       res.redirect("/");
     } catch (err) {
-      console.log(err);
-      // return next(err);
+      return next(err);
     }
   },
 ];
@@ -262,7 +261,7 @@ exports.admin_post = [
         return value;
       }
     }),
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const errors = validationResult(req);
       // if there are errors
@@ -280,14 +279,14 @@ exports.admin_post = [
         });
         return;
       }
-      const user = await Account.findOneAndUpdate({
-        _id: req.user._id,
-        admin: true,
-      });
+      const user = await Account.findOneAndUpdate(
+        { _id: req.user._id },
+        { admin: true }
+      );
       user.save();
       res.redirect("/");
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   },
 ];
