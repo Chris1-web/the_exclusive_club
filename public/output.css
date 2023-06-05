@@ -576,10 +576,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mt-1 {
-  margin-top: 0.25rem;
-}
-
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -590,14 +586,6 @@ video {
 
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .block {
@@ -634,6 +622,14 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-4 {
@@ -924,6 +920,11 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -967,12 +968,6 @@ video {
   opacity: 0.5;
 }
 
-.shadow-2xl {
-  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-xl {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
@@ -1001,6 +996,10 @@ body,
 
 .message_card .text {
   font-family: "Raleway", sans-serif;
+}
+
+.content-screen {
+  min-height: 85vh;
 }
 
 .hover\:bg-lime-500:hover {

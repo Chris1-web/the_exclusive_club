@@ -25,3 +25,7 @@ body,
 .message_card .text {
   font-family: "Raleway", sans-serif;
 }
+
+.content-screen {
+  min-height: 85vh;
+}

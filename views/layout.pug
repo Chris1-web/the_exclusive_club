@@ -3,7 +3,7 @@ html
     head 
         link(rel="stylesheet" href="/output.css")
         title= title
-    body 
+    body
         nav(class="text-center mt-3 flex justify-between container shadow-xl px-2 md:mx-auto") 
             div(class="top-nav flex items-center justify-center pb-4")
                 a(href="/")
@@ -25,15 +25,15 @@ html
                                 a(href="/admin" class="underline md:text-xl") Be an Admin
                         li 
                             a(href="/logout" class="text-red-400 self-center md:text-xl") logout
-        div(class="bg-[#BFC2CD] h-full pt-2")
+        div(class="content-screen bg-[#BFC2CD] h-full pt-2 min-h-screen")
             if !user
                 div(class="bottom-nav text-base text-light-black")
                     p(class="text-center pt-2") To post a message, Please create an account and become a member 
             block content
 
-            block footer 
-                footer(class="flex justify-center items-center gap-2 border-t border-t-neutral-950 bg-white mt-1")
-                    p Made by Christianah.   
-                    a(href="https://github.com/Chris1-web/the_exclusive_club" target="_blank" class="flex items-center") 
-                        p Github 
-                        img(src="/images/github-icon.png")
+        block footer 
+            footer(class="flex justify-center items-center gap-2 border-t border-t-neutral-950 bg-white")
+                p Made by Christianah.   
+                a(href="https://github.com/Chris1-web/the_exclusive_club" target="_blank" class="flex items-center") 
+                    p Github 
+                    img(src="/images/github-icon.png")
