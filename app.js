@@ -14,7 +14,7 @@ const indexRouter = require("./routes/index");
 const Account = require("./models/account");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // set up mongoose connection
 mongoose.set("strictQuery", false);
